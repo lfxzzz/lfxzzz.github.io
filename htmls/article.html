@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" type="text/css" href="/dist/css/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/dist/css/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/dist/css/print.css" media="print">
+    <link rel="stylesheet" type="text/css" href="/dist/css/main.css">
+    <link rel="stylesheet" href="/dist/css/styles/default.css">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- <script src="../dist/vue/dist/vue.min.js"></script> -->
+    <title></title>
+</head>
+
+<body>
+    <div id="main">
+        <header>
+            <div class="inner">
+                <h1>Blog</h1>
+                <h2></h2>
+                <a href="https://github.com/linfuxiang" class="button"><small>Follow me on</small> GitHub</a>
+            </div>
+        </header>
+        <div id="content-wrapper">
+            <div class="inner clearfix">
+                <section id="main-content">
+                    <div v-html="article"></div>
+                    <iframe v-show="name == 'vue2'" id="embed_dom" name="embed_dom" frameborder="0" style="display:block;width:690px; height:345px;" src="https://www.processon.com/embed/5ba1ba36e4b0fe81b63d1ba5"></iframe>
+                </section>
+                <aside id="sidebar">
+                    <ul>
+                        <template v-cloak v-for="item in links">
+                            <li>
+                                <a 
+                                :style="{color: item.name == name ? 'red' : ''}" 
+                                :href="item.href"
+                                >{{item.title}}</a>
+                                <ul v-if="header == item.name">
+                                    <template v-cloak v-for="innerItem in item.details">
+                                        <li><a 
+                                            :style="{color: innerItem.name == name ? 'red' : ''}" 
+                                            :href="innerItem.href" 
+                                            :target="(innerItem.isBlank? '_blank' : '')">{{innerItem.title}}</a></li>
+                                    </template>
+                                </ul>
+                            </li>
+                        </template>
+                    </ul>
+                </aside>
+            </div>
+        </div>
+        <!-- <div v-for="item of items" track-by="$index">{{item}}{{$index}}</div> -->
+        <!-- <div id="abbb">{{aaa}}</div> -->
+        <!-- <input type="text" v-model="aaa"> -->
+        <!-- <button @click="clickit">a</buttn> -->
+    </div>
+    <script src="/dist/scripts/seajs-3.0.0/dist/sea.js"></script>
+    <script src="/dist/scripts/sea-config.js"></script>
+    <script src="/dist/scripts/vue/dist/vue.min.js"></script>
+    <script src="/dist/scripts/vue/dist/vue-resource.min.js"></script>
+    <script src="/dist/scripts/highlight.pack.js"></script>
+    <script>
+    // 加载入口模块
+    seajs.use('article', function(data) {
+    });
+    </script>
+</body>
+
+</html>
